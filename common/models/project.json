@@ -1,0 +1,27 @@
+{
+  "name": "Project",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dataSetFileName": {
+      "type": "string"
+    },
+    "resultFileName": {
+      "type": "string"
+    },
+    "targetFeature": {
+      "type": "string"
+    },
+    "w1": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

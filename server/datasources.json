@@ -1,0 +1,42 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongodb_db": {
+    "host": "127.0.0.1",
+    "port": "11235",
+    "database": "mozidb",
+    "name": "mozidb",
+    "connector": "mongodb"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./uploads",
+    "allowedContentTypes": [
+      "text/plain",
+      "image/jpg",
+      "image/jpeg",
+      "image/png",
+      "application/pdf"
+    ]
+  },
+  "emailDataSource": {
+    "connector": "mail",
+    "transports": [{
+      "type": "smtp",
+      "host": "smtp.gmail.com",
+      "secure": true,
+      "port": 465,
+      "tls": {
+        "rejectUnauthorized": false
+      },
+      "auth": {
+        "user": "moziadmin@gmail.com",
+        "pass": "passwordhere"
+      }
+    }]
+  }
+}
