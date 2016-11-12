@@ -4,12 +4,12 @@
 
 
 ## Requirements
-node.js v6.0 +
-mongodb
+* node.js v6.0 +
+* mongodb
 
 ## How to run
-npm install
-node .
+* npm install
+* node .
 
 * The app starts at port 7070 by default. This can be changed at mozi/server/config.json
 
