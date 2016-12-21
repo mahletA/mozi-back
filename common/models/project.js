@@ -1,9 +1,9 @@
 module.exports = function(Project) {
 
     let PythonShell = require('python-shell');
-    let programName = './server/py-app/app.py';
-    const DATASETS_PATH ='./uploads/dataset';
-    const RESULTS_PATH ='./server/py-app/results';
+    let programName = './server/py-app/mos.py';
+    const DATASETS_PATH ='./uploads/datasets/';
+    const RESULTS_PATH ='./server/py-app/results/';
 
     Project.startAnalyze = function (id,cb) {
 
@@ -14,18 +14,28 @@ module.exports = function(Project) {
                     let w1= project.w1;
                     let targetFeature =project.targetFeature;
 
-                    // let options = {
-                    //     mode: 'text',
-                    //     pythonPath: 'path/to/python',
-                    //     pythonOptions: ['-u'],
-                    //     scriptPath: 'path/to/my/scripts',
-                    //     args: ['value1', 'value2', 'value3']
-                    // };
+                    //todo refactor
+                    let logFileName = RESULTS_PATH + project.id  + '.log';
+                    let resultFileName = RESULTS_PATH + project.id  + '.scm';
+                    let datasetName = DATASETS_PATH + dataSetFileName;
 
-                    console.log(dataSetFileName,w1,targetFeature);
-                    PythonShell.run(programName,function (err,results) {
-                        if (err) throw err;
-                        console.log('results: %j', results);
+                    let params = '-i '+ datasetName +' -u '+ targetFeature +' --log-file '+ logFileName ;
+                    if(w1){
+                      params += ' -w1';
+                    }
+
+                    // console.log('parmas',params);
+
+                    let options = {
+                        args: [params,resultFileName]
+                    };
+                    //console.log('Arguments: %j',options);
+                    PythonShell.run(programName,options,function (err,results) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        
+                         console.log('results: %j', results);
 
                         /**
                          * @TODO
